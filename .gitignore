@@ -23,7 +23,10 @@ bin/
 Bin/
 obj/
 Obj/
-
+*.db
+*.db-schemaview
+*.db-shm 
+*.db-wal
 # Visual Studio 2015 cache/options directory
 .vs/
 
