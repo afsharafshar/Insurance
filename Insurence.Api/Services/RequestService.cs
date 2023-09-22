@@ -1,5 +1,6 @@
 using Insurence.Api.DataAccess;
 using Insurence.Api.Entities;
+using Insurence.Api.Infrasturcture;
 using Microsoft.EntityFrameworkCore;
 
 namespace Insurence.Api.Services;
@@ -41,7 +42,7 @@ public class RequestService
             }
             else
             {
-                throw new Exception("Investment not in range");
+                throw new LogicException("Investment not in range");
             }
         }
 
