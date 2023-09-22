@@ -1,4 +1,6 @@
 using Insurence.Api.DataAccess;
+using Insurence.Api.Infrasturcture;
+using Insurence.Api.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +13,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite("Data Source=Insurence.db"));
+
+builder.Services.AddScoped<RequestService>();
 var app = builder.Build();
 
 async Task InitializeDatabase()
@@ -37,7 +41,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseExceptionHandler();
+app.UseExceptionHandling();
 app.MapControllers();
 
 app.Run();

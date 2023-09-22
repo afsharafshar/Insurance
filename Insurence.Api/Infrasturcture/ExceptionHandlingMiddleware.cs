@@ -5,7 +5,7 @@ namespace Insurence.Api.Infrasturcture;
 public static class ApplicationExtensionMethod
 {
 
-    public static IApplicationBuilder UseExceptionHandler(this IApplicationBuilder builder)
+    public static IApplicationBuilder UseExceptionHandling(this IApplicationBuilder builder)
     {
         return builder.UseMiddleware<ExceptionHandlingMiddleware>();
     }

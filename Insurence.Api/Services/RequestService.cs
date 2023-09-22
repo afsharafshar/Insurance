@@ -49,4 +49,30 @@ public class RequestService
         _context.Customers.Add(customer);
         await _context.SaveChangesAsync(stoppingToken);
     }
+
+
+    public async Task<InsuranceCoverageForUserDto> ShowInsurance(string email, CancellationToken stoppingToken)
+    {
+        var customer = await _context.Customers
+            .Include(x => x.Requests)
+            .FirstOrDefaultAsync(x => x.Email == email,stoppingToken);
+
+        if (customer is null)
+        {
+            throw new LogicException("customer not found");
+        }
+        
+        var coverages = await _context.Coverages.ToListAsync(stoppingToken);
+
+        var showCoverage = new InsuranceCoverageForUserDto();
+
+        foreach (var request in customer.Requests)
+        {
+            var coverage = coverages.First(x => x.Type == request.Type);
+            var fee = request.Investment * coverage.PaymentFee;
+            showCoverage.All += fee;
+        }
+
+        return showCoverage;
+    }
 }

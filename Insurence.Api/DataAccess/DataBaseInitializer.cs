@@ -28,9 +28,9 @@ public class DataBaseInitializer
 
         var coverages = new List<Coverage>()
         { 
-            new Coverage() {Type = CoverageType.Surgery,MinInvestment =5000 ,MaxInvestment =500000000 },
-            new Coverage(){Type = CoverageType.Dental,MinInvestment =4000 ,MaxInvestment =400000000 },
-            new Coverage(){Type = CoverageType.Hospitalization,MinInvestment =2000 ,MaxInvestment =200000000 },
+            new Coverage() {Type = CoverageType.Surgery,MinInvestment =5000 ,MaxInvestment =500_000_000,PaymentFee = 0.0052},
+            new Coverage(){Type = CoverageType.Dental,MinInvestment =4000 ,MaxInvestment =400_000_000,PaymentFee = 0.0042},
+            new Coverage(){Type = CoverageType.Hospitalization,MinInvestment =2000 ,MaxInvestment =200_000_000,PaymentFee = 0.005},
         };
         
         _context.Coverages.AddRange(coverages);
